@@ -1,0 +1,6 @@
+#!/bin/zsh -x
+
+cp -r PKG_PREFIX/bin/.zshrc $HOME/.zshrc
+echo "PKG_PREFIX" |> $HOME/.adam-dev-version
+
+exec ZSH_PREFIX/bin/zsh -i -l
