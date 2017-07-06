@@ -13,6 +13,7 @@ pkg_deps=(
     core/gawk
     core/git
     core/sed
+    core/tmux
     adam/zsh
 )
 pkg_build_deps=(
@@ -58,6 +59,9 @@ do_install() {
 
   fix_interpreter $pkg_prefix/zplug/bin/zplug-env core/coreutils bin/env
   fix_interpreter $pkg_prefix/bin/start adam/zsh bin/zsh
+
+  cp "$PLAN_CONTEXT/.tmux.conf" "$pkg_prefix/bin/.tmux.conf"
+  cp "$PLAN_CONTEXT/.tmux.conf.local" "$pkg_prefix/bin/.tmux.conf.local"
 }
 
 do_strip() {

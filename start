@@ -1,6 +1,16 @@
 #!/bin/zsh -x
 
-cp -r PKG_PREFIX/bin/.zshrc $HOME/.zshrc
-echo "PKG_PREFIX" |> $HOME/.adam-dev-version
+if [[ -f $HOME/.dev-version ]]; then
+  dev_version=$(cat $HOME/.dev-version)
+else
+  dev_version="nope"
+fi
+
+if [[ "$dev_version" != "PKG_PREFIX" ]]; then
+  # Fix up zshrc
+  rm ~/.zhsrc
+  cp -r PKG_PREFIX/bin/.zshrc $HOME/.zshrc
+  echo "PKG_PREFIX" |> $HOME/.adam-dev-version
+fi
 
 exec ZSH_PREFIX/bin/zsh -i -l
