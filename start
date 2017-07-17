@@ -10,7 +10,11 @@ if [[ "$dev_version" != "PKG_PREFIX" ]]; then
   # Fix up zshrc
   rm ~/.zhsrc
   cp -r PKG_PREFIX/bin/.zshrc $HOME/.zshrc
-  echo "PKG_PREFIX" |> $HOME/.adam-dev-version
+  echo "PKG_PREFIX" |> $HOME/.dev-version
+
+  # Set up tmux
+  cp -r PKG_PREFIX/bin/.tmux.conf $HOME/.tmux.conf
+  cp -r PKG_PREFIX/bin/.tmux.conf.local $HOME/.tmux.conf.local
 fi
 
-exec ZSH_PREFIX/bin/zsh -i -l
+exec tmux new-session -A -s main

@@ -62,6 +62,7 @@ do_install() {
 
   cp "$PLAN_CONTEXT/.tmux.conf" "$pkg_prefix/bin/.tmux.conf"
   cp "$PLAN_CONTEXT/.tmux.conf.local" "$pkg_prefix/bin/.tmux.conf.local"
+  sed -i "s|ZSH_PREFIX|$ZSH_PREFIX|" "$pkg_prefix/bin/.tmux.conf.local"
 }
 
 do_strip() {
